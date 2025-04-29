@@ -28,6 +28,7 @@
 
             <div class="container">
                 <div class="page-inner">
+
                     @yield('content')
 
                     @if ($errors->any())
