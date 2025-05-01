@@ -19,6 +19,8 @@
 
 <body>
     <div class="wrapper">
+        @include('sweetalert::alert')
+
         <!-- Sidebar -->
         @include('includes.admin.sidebar')
         <!-- End Sidebar -->
@@ -28,6 +30,8 @@
 
             <div class="container">
                 <div class="page-inner">
+
+                    @yield('breadcrumbs')
 
                     @yield('content')
 

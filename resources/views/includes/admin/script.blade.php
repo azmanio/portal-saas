@@ -53,3 +53,16 @@
 
 <!-- Kaiadmin JS -->
 <script src="{{ asset('assets/admin/js/kaiadmin.min.js') }}"></script>
+
+<!-- JS DataTables -->
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({});
+    });
+</script>
+
+@stack('script')

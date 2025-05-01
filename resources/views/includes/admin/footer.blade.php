@@ -3,8 +3,8 @@
         <nav class="pull-left">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://www.themekita.com">
-                        ThemeKita
+                    <a class="nav-link" href="#">
+                        Contact
                     </a>
                 </li>
                 <li class="nav-item">
@@ -16,12 +16,8 @@
             </ul>
         </nav>
         <div class="copyright">
-            2024, made with <i class="fa fa-heart heart text-danger"></i> by
-            <a href="http://www.themekita.com">ThemeKita</a>
-        </div>
-        <div>
-            Distributed by
-            <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+            {{ date('Y') }} &copy; made with <i class="fa fa-heart heart text-danger"></i> by
+            <a href="#">HII</a>
         </div>
     </div>
 </footer>

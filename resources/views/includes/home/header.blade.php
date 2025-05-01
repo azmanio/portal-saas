@@ -5,7 +5,7 @@
         <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.png" alt=""> -->
-            <h1 class="sitename">iLanding</h1>
+            <h1 class="sitename">SaaS</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
@@ -39,7 +39,11 @@
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 
-        <a class="btn-getstarted" href="index.html#about">Get Started</a>
+        <div>
+            <a class="btn-getstarted" href="{{ route('login') }}">Login</a>
+            <a role="button" class="btn btn-outline-primary rounded-pill py-1"
+                href="{{ route('register') }}">Register</a>
+        </div>
 
     </div>
 </header>

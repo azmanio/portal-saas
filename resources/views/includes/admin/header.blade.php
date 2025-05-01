@@ -3,7 +3,8 @@
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
             <a href="index.html" class="logo">
-                <img src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand" height="20" />
+                <img src="{{ asset('assets/admin/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand"
+                    height="20" />
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -64,7 +65,7 @@
                                 <div class="notif-center">
                                     <a href="#">
                                         <div class="notif-img">
-                                            <img src="assets/img/jm_denis.jpg" alt="Img Profile" />
+                                            <img src="assets/admin/img/jm_denis.jpg" alt="Img Profile" />
                                         </div>
                                         <div class="notif-content">
                                             <span class="subject">Jimmy Denis</span>
@@ -74,7 +75,7 @@
                                     </a>
                                     <a href="#">
                                         <div class="notif-img">
-                                            <img src="assets/img/chadengle.jpg" alt="Img Profile" />
+                                            <img src="assets/admin/img/chadengle.jpg" alt="Img Profile" />
                                         </div>
                                         <div class="notif-content">
                                             <span class="subject">Chad</span>
@@ -84,7 +85,7 @@
                                     </a>
                                     <a href="#">
                                         <div class="notif-img">
-                                            <img src="assets/img/mlane.jpg" alt="Img Profile" />
+                                            <img src="assets/admin/img/mlane.jpg" alt="Img Profile" />
                                         </div>
                                         <div class="notif-content">
                                             <span class="subject">Jhon Doe</span>
@@ -96,7 +97,7 @@
                                     </a>
                                     <a href="#">
                                         <div class="notif-img">
-                                            <img src="assets/img/talha.jpg" alt="Img Profile" />
+                                            <img src="assets/admin/img/talha.jpg" alt="Img Profile" />
                                         </div>
                                         <div class="notif-content">
                                             <span class="subject">Talha</span>
@@ -151,7 +152,7 @@
                                     </a>
                                     <a href="#">
                                         <div class="notif-img">
-                                            <img src="assets/img/profile2.jpg" alt="Img Profile" />
+                                            <img src="assets/admin/img/profile2.jpg" alt="Img Profile" />
                                         </div>
                                         <div class="notif-content">
                                             <span class="block">
@@ -249,7 +250,8 @@
                     <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                         aria-expanded="false">
                         <div class="avatar-sm">
-                            <img src="assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle" />
+                            <img src="assets/admin/img/profile.jpg" alt="..."
+                                class="avatar-img rounded-circle" />
                         </div>
                         <span class="profile-username">
                             <span class="op-7">Hi,</span>
@@ -261,7 +263,7 @@
                             <li>
                                 <div class="user-box">
                                     <div class="avatar-lg">
-                                        <img src="assets/img/profile.jpg" alt="image profile"
+                                        <img src="assets/admin/img/profile.jpg" alt="image profile"
                                             class="avatar-img rounded" />
                                     </div>
                                     <div class="u-text">
@@ -280,7 +282,14 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Account Setting</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </a>
+                                </form>
                             </li>
                         </div>
                     </ul>

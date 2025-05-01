@@ -65,10 +65,28 @@
         <!-- Institution Type -->
         <div class="mt-4">
             <x-input-label for="institution_type" :value="__('Tipe Institusi')" />
-            <x-text-input id="institution_type" class="block mt-1 w-full" type="text" name="institution_type"
-                :value="old('institution_type')" required autofocus autocomplete="institution_type" />
+
+            <div class="flex flex-column grid gap-4 mt-2 text-white">
+                <!-- Radio Button 1 -->
+                <div>
+                    <label for="laz">
+                        <input id="laz" type="radio" name="institution_type" value="laz" class="mr-2"
+                            {{ old('institution_type') == 'laz' ? 'checked' : '' }} required>
+                        {{ __('LAZ') }}
+                    </label>
+                </div>
+                <!-- Radio Button 2 -->
+                <div>
+                    <label for="ngo">
+                        <input id="ngo" type="radio" name="institution_type" value="ngo" class="mr-2"
+                            {{ old('institution_type') == 'ngo' ? 'checked' : '' }} required>
+                        {{ __('NGO') }}
+                    </label>
+                </div>
+            </div>
             <x-input-error :messages="$errors->get('institution_type')" class="mt-2" />
         </div>
+
 
         <!-- Core Program -->
         <div class="mt-4">

@@ -12,7 +12,6 @@
     </title>
 
     @include('includes.home.style')
-
 </head>
 
 <body class="index-page">
@@ -20,6 +19,8 @@
     @include('includes.home.header')
 
     <main class="main">
+        @include('sweetalert::alert')
+
 
         @yield('content')
 
