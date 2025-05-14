@@ -53,7 +53,13 @@
                     <td class="text-center">{{ $user->phone ?? '-' }}</td>
                     <td class="text-center">{{ $user->institution_name ?? '-' }}</td>
                     <td class="text-center">{{ $user->institution_type ?? '-' }}</td>
-                    <td class="text-center">{{ $user->status ? 'Aktif' : 'Tidak Aktif' }}</td>
+                    <td class="text-center">
+                        @if ($user->status)
+                            <span class="badge bg-success">Aktif</span>
+                        @else
+                            <span class="badge bg-danger">Tidak Aktif</span>
+                        @endif
+                    </td>
                     <td class="text-center">
                         <a href="#">
                             <i class="fa fa-eye"></i>

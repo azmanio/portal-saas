@@ -1,9 +1,36 @@
 @extends('layouts.admin')
 
-@section('content')
-    <h4>Edit User</h4>
+@section('breadcrumbs')
+    <div class="page-header">
+        <ul class="breadcrumbs px-0">
+            <li class="nav-home">
+                <a href="{{ route('dashboard') }}">
+                    <i class="icon-home"></i>
+                </a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('user.index') }}">User</a>
+            </li>
+            <li class="separator">
+                <i class="icon-arrow-right"></i>
+            </li>
+            <li class="nav-item active">
+                Edit User
+            </li>
+        </ul>
+    </div>
+@endsection
 
+@section('content')
     <x-admin.form :action="route('user.update', $user)" method="PUT">
+        <x-slot:cardTitle>
+            <div class="d-flex justify-content-between align-items-center">
+                <h4>Edit User</h4>
+            </div>
+        </x-slot:cardTitle>
         <div class="mb-3">
             <label class="form-label">Nama</label>
             <input name="name" class="form-control" value="{{ old('name', $user->name) }}" required>
@@ -13,30 +40,43 @@
             <input name="email" type="email" class="form-control" value="{{ old('email', $user->email) }}" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">Password (biarkan kosong jika tidak ingin mengubah)</label>
+            <label class="form-label">Password <small>(biarkan kosong jika tidak ingin mengubah)</small></label>
             <input name="password" type="password" class="form-control">
         </div>
         <div class="mb-3">
             <label>Confirm Password</label>
             <input name="password_confirmation" type="password" class="form-control">
         </div>
-        <div class="mb-3">
-            <label class="form-label">Role</label>
-            <div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="role" id="roleUser" value="user"
-                        {{ old('role', $user->role) === 'user' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="roleUser">User</label>
+        <div class="container-fluid mb-3">
+            <div class="row">
+                <div class='col-6'>
+                    <label class="form-label">Role</label>
+                    <div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="role" id="roleUser" value="user"
+                                {{ old('role', $user->role) === 'user' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="roleUser">User</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="role" id="roleAdmin" value="admin"
+                                {{ old('role', $user->role) === 'admin' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="roleAdmin">Admin</label>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="role" id="roleAdmin" value="admin"
-                        {{ old('role', $user->role) === 'admin' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="roleAdmin">Admin</label>
+                <div class='col-4'>
+                    <label class="form-label">Status</label>
+                    <div class="form-check form-switch">
+                        <input onclick="window.location.href='{{ route('user.toggleStatus', $user) }}'"
+                            {{ $user->status ? 'checked' : '' }} type="checkbox" class="form-check-input" id="customSwitch">
+                        <label class="form-check-label" for="customSwitch">
+                            {{ $user->status ? 'Aktif' : 'Nonaktif' }}
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
 
-        {{-- Field tambahan untuk role user --}}
         <div id="user-fields" style="display: none;">
             <div class="mb-3">
                 <label class="form-label">No Hp</label>
@@ -100,7 +140,6 @@
                 radio.addEventListener('change', toggleUserFields);
             });
 
-            // Jalankan saat halaman dimuat
             toggleUserFields();
         });
     </script>

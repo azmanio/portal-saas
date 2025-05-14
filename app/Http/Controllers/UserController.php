@@ -38,6 +38,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => 'required|in:admin,user',
             'phone' => 'nullable|string|max:20',
             'institution_name' => 'nullable|string|max:255',
             'legality_no' => 'nullable|string|max:50',
@@ -77,6 +78,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => "required|email|unique:users,email,{$user->id}",
             'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+            'role' => 'required|in:admin,user',
             'phone' => 'nullable|string|max:20',
             'institution_name' => 'nullable|string|max:255',
             'legality_no' => 'nullable|string|max:50',
@@ -103,5 +105,17 @@ class UserController extends Controller
         $user->delete();
         Alert::success('Deleted', 'User deleted successfully!');
         return redirect()->route('user.index');
+    }
+
+    public function togglestatus(User $user)
+    {
+        if ($user->email == 'admin@saas.com') {
+            return redirect()->route('user.index')->withErrors([
+                'status' => 'Tidak dapat mengubah status Super Admin!',
+            ]);
+        }
+        $user->status = !$user->status;
+        $user->save();
+        return back();
     }
 }
