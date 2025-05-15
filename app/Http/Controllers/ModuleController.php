@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ModuleController extends Controller
 {
@@ -12,7 +13,11 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        //
+        $modules = Module::all();
+        $title = 'Apa kamu yakin?';
+        $text = "Data yang dihapus tidak dapat dikembalikan lagi";
+        confirmDelete($title, $text);
+        return view('admin.module.index', compact('modules'));
     }
 
     /**
@@ -20,7 +25,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.module.create');
     }
 
     /**
@@ -28,7 +33,14 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'module_name' => ['required', 'string', 'max:255'],
+        ]);
+
+        Module::create($validated);
+
+        Alert::success('Success', 'Module created successfully!');
+        return redirect()->route('module.index');
     }
 
     /**
@@ -44,7 +56,7 @@ class ModuleController extends Controller
      */
     public function edit(Module $module)
     {
-        //
+        return view('admin.module.edit', compact('module'));
     }
 
     /**
@@ -52,7 +64,15 @@ class ModuleController extends Controller
      */
     public function update(Request $request, Module $module)
     {
-        //
+        $data = $request->validate([
+            'module_name' => ['required', 'string', 'max:255'],
+
+        ]);
+
+        $module->update($data);
+
+        Alert::success('Success', 'Module updated successfully!');
+        return redirect()->route('module.index');
     }
 
     /**
@@ -60,6 +80,15 @@ class ModuleController extends Controller
      */
     public function destroy(Module $module)
     {
-        //
+        $module->delete();
+        Alert::success('Deleted', 'Module deleted successfully!');
+        return redirect()->route('module.index');
+    }
+
+    public function togglestatus(Module $module)
+    {
+        $module->status = !$module->status;
+        $module->save();
+        return back();
     }
 }

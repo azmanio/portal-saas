@@ -43,6 +43,12 @@
                         <p>User</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('module.index') }}">
+                        <i class="fas fa-book"></i>
+                        <p>Module</p>
+                    </a>
+                </li>
                 {{-- <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#base">
                         <i class="fas fa-layer-group"></i>

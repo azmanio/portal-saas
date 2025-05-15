@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('modul_name');
+            $table->string('module_name');
             $table->boolean('status')->default(true)->comment('Aktif?');
             $table->timestamps();
         });

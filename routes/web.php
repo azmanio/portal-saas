@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +11,8 @@ Route::get('/', function () {
 
 Route::resource('user', UserController::class);
 
+Route::resource('module', ModuleController::class);
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -20,6 +22,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/user/{user}/edit/status', [UserController::class, 'toggleStatus'])->name('user.toggleStatus');
+Route::get('/module/{module}/edit/status', [ModuleController::class, 'toggleStatus'])->name('module.toggleStatus');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
