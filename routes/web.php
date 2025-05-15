@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -13,6 +14,8 @@ Route::resource('user', UserController::class);
 
 Route::resource('module', ModuleController::class);
 
+Route::resource('feature', FeatureController::class);
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
@@ -23,6 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/user/{user}/edit/status', [UserController::class, 'toggleStatus'])->name('user.toggleStatus');
 Route::get('/module/{module}/edit/status', [ModuleController::class, 'toggleStatus'])->name('module.toggleStatus');
+Route::get('/feature/{feature}/edit/status', [FeatureController::class, 'toggleStatus'])->name('feature.toggleStatus');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

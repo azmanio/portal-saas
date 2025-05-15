@@ -15,4 +15,9 @@ class Feature extends Model
     {
         return $this->belongsToMany(Plan::class, 'plan_features');
     }
+
+    public function module()
+    {
+        return $this->belongsTo(Module::class);
+    }
 }

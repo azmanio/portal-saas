@@ -33,8 +33,6 @@
 
                     @yield('breadcrumbs')
 
-                    @yield('content')
-
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -44,6 +42,9 @@
                             </ul>
                         </div>
                     @endif
+
+                    @yield('content')
+
                 </div>
 
                 @include('includes.admin.footer')

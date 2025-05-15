@@ -10,4 +10,9 @@ class Module extends Model
     use HasUuids;
 
     protected $guarded = [];
+
+    public function features()
+    {
+        return $this->hasMany(Feature::class);
+    }
 }

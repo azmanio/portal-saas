@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('features', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('modul_id')
+            $table->foreignUuid('module_id')
                 ->references('id')
                 ->on('modules')
                 ->cascadeOnDelete()
