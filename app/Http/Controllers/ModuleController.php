@@ -25,7 +25,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('admin.module.create');
+        return view('admin.module.form');
     }
 
     /**
@@ -56,7 +56,7 @@ class ModuleController extends Controller
      */
     public function edit(Module $module)
     {
-        return view('admin.module.edit', compact('module'));
+        return view('admin.module.form', compact('module'));
     }
 
     /**
