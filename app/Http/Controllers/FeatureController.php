@@ -27,7 +27,7 @@ class FeatureController extends Controller
     public function create()
     {
         $modules = Module::all();
-        return view('admin.feature.create', compact('modules'));
+        return view('admin.feature.form', compact('modules'));
     }
 
     /**
@@ -61,7 +61,7 @@ class FeatureController extends Controller
     public function edit(Feature $feature)
     {
         $modules = Module::all();
-        return view('admin.feature.edit', compact('feature', 'modules'));
+        return view('admin.feature.form', compact('feature', 'modules'));
     }
 
     /**
