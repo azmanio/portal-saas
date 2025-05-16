@@ -13,7 +13,7 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        $modules = Module::all();
+        $modules = Module::latest()->paginate(10);
         $title = 'Apa kamu yakin?';
         $text = "Data yang dihapus tidak dapat dikembalikan lagi";
         confirmDelete($title, $text);

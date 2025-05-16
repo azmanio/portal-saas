@@ -14,7 +14,7 @@ class FeatureController extends Controller
      */
     public function index()
     {
-        $features = Feature::with('module')->get();
+        $features = Feature::with('module')->latest()->paginate(10);
         $title = 'Apa kamu yakin?';
         $text = "Data yang dihapus tidak dapat dikembalikan lagi";
         confirmDelete($title, $text);

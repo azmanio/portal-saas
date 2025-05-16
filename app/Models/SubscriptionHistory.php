@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasFormattedAttributes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
 class SubscriptionHistory extends Model
 {
-    use HasUuids;
+    use HasUuids, HasFormattedAttributes;
 
     protected $guarded = [];
 
