@@ -55,6 +55,12 @@
                         <p>Feature</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('plan.index') }}">
+                        <i class="fas fa-list"></i>
+                        <p>Plan</p>
+                    </a>
+                </li>
                 {{-- <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#base">
                         <i class="fas fa-layer-group"></i>
