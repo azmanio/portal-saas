@@ -54,4 +54,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Subscription::class);
     }
+
+    // Atribut yang huruf awal setiap kata dikapital
+    protected array $ucwordsAttributes = ['name', 'institution_name'];
+
+    // Atribut yang hanya huruf awal kata pertama dikapital
+    protected array $ucfirstAttributes = ['role', 'core_program'];
 }

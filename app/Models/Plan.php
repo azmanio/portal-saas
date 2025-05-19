@@ -32,4 +32,9 @@ class Plan extends Model
         ];
     }
 
+    // Atribut yang huruf awal setiap kata dikapital
+    protected array $ucwordsAttributes = ['plan_name'];
+
+    // Atribut yang hanya huruf awal kata pertama dikapital
+    protected array $ucfirstAttributes = ['description'];
 }

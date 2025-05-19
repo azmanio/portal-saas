@@ -52,7 +52,7 @@
                     <td class="text-center">{{ $user->email ?? '-' }}</td>
                     <td class="text-center">{{ $user->phone ?? '-' }}</td>
                     <td class="text-center">{{ $user->institution_name ?? '-' }}</td>
-                    <td class="text-center">{{ $user->institution_type ?? '-' }}</td>
+                    <td class="text-center">{{ strtoupper($user->institution_type ?? '-') }}</td>
                     <td class="text-center">
                         @if ($user->status)
                             <span class="badge bg-success">Aktif</span>

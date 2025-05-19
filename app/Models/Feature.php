@@ -21,4 +21,10 @@ class Feature extends Model
     {
         return $this->belongsTo(Module::class);
     }
+
+    // Atribut yang huruf awal setiap kata dikapital
+    protected array $ucwordsAttributes = ['feature_name'];
+
+    // Atribut yang hanya huruf awal kata pertama dikapital
+    protected array $ucfirstAttributes = ['description', 'status'];
 }

@@ -16,4 +16,10 @@ class Module extends Model
     {
         return $this->hasMany(Feature::class);
     }
+
+    // Atribut yang huruf awal setiap kata dikapital
+    protected array $ucwordsAttributes = ['module_name'];
+
+    // Atribut yang hanya huruf awal kata pertama dikapital
+    protected array $ucfirstAttributes = ['status'];
 }

@@ -39,4 +39,40 @@ trait HasFormattedAttributes
             default => 'dark',
         };
     }
+
+    /**
+     * Override getAttribute agar bisa format otomatis.
+     */
+    public function getAttribute($key)
+    {
+        $value = parent::getAttribute($key);
+
+        // Format dengan ucwords
+        if (property_exists($this, 'ucwordsAttributes') && in_array($key, $this->ucwordsAttributes ?? [])) {
+            return $this->formatUcwords($value);
+        }
+
+        // Format dengan ucfirst
+        if (property_exists($this, 'ucfirstAttributes') && in_array($key, $this->ucfirstAttributes ?? [])) {
+            return $this->formatUcfirst($value);
+        }
+
+        return $value;
+    }
+
+    /**
+     * Kapital setiap awal kata.
+     */
+    protected function formatUcwords(?string $value) : ?string
+    {
+        return $value ? ucwords(strtolower($value)) : null;
+    }
+
+    /**
+     * Kapital hanya kata pertama.
+     */
+    protected function formatUcfirst(?string $value) : ?string
+    {
+        return $value ? ucfirst(strtolower($value)) : null;
+    }
 }
