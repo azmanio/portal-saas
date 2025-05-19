@@ -8,7 +8,7 @@ trait HasFormattedAttributes
 {
     public function getFormattedPriceAttribute() : string
     {
-        return 'Rp' . number_format($this->price ?? 0, 0, ',', '.');
+        return number_format($this->price ?? 0, 0, ',', '.');
     }
 
     public function getFormattedDateAttribute() : ?string

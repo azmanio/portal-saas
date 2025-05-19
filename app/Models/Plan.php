@@ -12,9 +12,9 @@ class Plan extends Model
 
     protected $guarded = [];
 
-    public function features()
+    public function plan_features()
     {
-        return $this->belongsToMany(Feature::class, 'plan_features');
+        return $this->hasMany(PlanFeature::class);
     }
 
     const STATUS_DRAFT = 0;
@@ -32,19 +32,4 @@ class Plan extends Model
         ];
     }
 
-    // public function getStatusLabelAttribute()
-    // {
-    //     return self::getStatusOptions()[$this->status] ?? 'Unknown';
-    // }
-
-    // public function getStatusBadgeAttribute() : string
-    // {
-    //     return match ($this->status) {
-    //         0 => 'secondary', // draft
-    //         1 => 'success',   // published
-    //         2 => 'warning',   // hidden
-    //         3 => 'danger',    // not active
-    //         default => 'dark',
-    //     };
-    // }
 }

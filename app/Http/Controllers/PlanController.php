@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feature;
 use App\Models\Plan;
+use App\Models\PlanFeature;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -13,7 +16,7 @@ class PlanController extends Controller
      */
     public function index()
     {
-        $plans = Plan::latest()->paginate(10);
+        $plans = Plan::all()->load('plan_features');
         $title = 'Apa kamu yakin?';
         $text = "Data yang dihapus tidak dapat dikembalikan lagi";
         confirmDelete($title, $text);
@@ -26,7 +29,8 @@ class PlanController extends Controller
     public function create()
     {
         $statusOptions = Plan::getStatusOptions();
-        return view('admin.plan.form', compact('statusOptions'));
+        $features = Feature::where('status', 1)->get();
+        return view('admin.plan.form', compact('statusOptions', 'features'));
     }
 
     /**
@@ -39,10 +43,19 @@ class PlanController extends Controller
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'user_qty' => 'required|integer|min:1',
+            'feature' => 'required|array',
             'status' => 'required|in:0,1,2,3',
         ]);
 
-        Plan::create($validated);
+        $plan = Plan::create(collect($validated)->except(['feature'])->toArray());
+
+        foreach ($validated['feature'] as $feature) {
+            PlanFeature::create([
+                'feature_id' => $feature,
+                'plan_id' => $plan->id,
+                'created_at' => Carbon::now()
+            ]);
+        }
 
         Alert::success('Success', 'Plan created successfully!');
         return redirect()->route('plan.index');
@@ -61,8 +74,10 @@ class PlanController extends Controller
      */
     public function edit(Plan $plan)
     {
+        $plan->load('plan_features');
+        $features = Feature::where('status', 1)->get();
         $statusOptions = Plan::getStatusOptions();
-        return view('admin.plan.form', compact('plan', 'statusOptions'));
+        return view('admin.plan.form', compact('plan', 'statusOptions', 'features'));
     }
 
     /**
@@ -70,15 +85,28 @@ class PlanController extends Controller
      */
     public function update(Request $request, Plan $plan)
     {
-        $validated = $request->validate([
+        $request->validate([
             'plan_name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'user_qty' => 'required|integer|min:1',
+            'feature' => 'required|array',
             'status' => 'required|in:0,1,2,3',
         ]);
 
-        $plan->update($validated);
+        $data = $request->except(['feature']);
+
+        $plan->update($data);
+
+        PlanFeature::where('plan_id', $plan->id)->delete();
+
+        foreach ($request->feature as $feature) {
+            PlanFeature::create([
+                'feature_id' => $feature,
+                'plan_id' => $plan->id,
+                'created_at' => Carbon::now()
+            ]);
+        }
 
         Alert::success('Success', 'Plan updated successfully!');
         return redirect()->route('plan.index');

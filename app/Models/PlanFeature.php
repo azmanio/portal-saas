@@ -13,4 +13,11 @@ class PlanFeature extends Model
     protected $guarded = [];
 
     protected $table = 'plan_features';
+
+    public $timestamps = false;
+
+    public function feature()
+    {
+        return $this->belongsTo(Feature::class);
+    }
 }

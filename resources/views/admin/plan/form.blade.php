@@ -29,6 +29,7 @@
 @section('content')
     @php
         $formAction = isset($plan) ? route('plan.update', $plan) : route('plan.store');
+        $selectedFeatures = old('feature', isset($plan) ? $plan->plan_features->pluck('feature_id')->toArray() : []);
     @endphp
     <x-admin.form :action="$formAction">
         @isset($plan)
@@ -65,10 +66,30 @@
         </div>
 
         <div class="mb-3">
+            <label for="feature_id" class="form-label">Feature Tersedia</label>
+            <div name="feature_id" id="feature_id" class="">
+                <div class="d-flex flex-wrap gap-3">
+                    @foreach ($features as $index => $feature)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox{{ $index }}"
+                                value="{{ $feature->id }}" name="feature[]"
+                                {{ in_array($feature->id, $selectedFeatures) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="inlineCheckbox{{ $index }}">
+                                {{ $feature->feature_name }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mb-3">
             <label for="status" class="form-label">Status</label>
             <select name="status" id="status" class="form-select @error('status') is-invalid @enderror">
                 @foreach ($statusOptions as $value => $label)
-                    <option value="{{ $value }}" {{ old('status', $plan->status ?? 0) == $value ? 'selected' : '' }}>
+                    <option value="{{ $value }}"
+                        {{ old('status', $plan->status ?? 0) == $value ? 'selected' : '' }}>
                         {{ $label }}
                     </option>
                 @endforeach

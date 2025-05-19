@@ -38,6 +38,7 @@
                 <th class="text-center">Deskripsi</th>
                 <th class="text-center">Harga</th>
                 <th class="text-center">Jumlah User</th>
+                <th class="text-center">Feature</th>
                 <th class="text-center">Status</th>
                 <th class="text-center">Aksi</th>
             </tr>
@@ -49,8 +50,13 @@
                     <td class="text-center">{{ $loop->iteration }}</td>
                     <td class="text-center">{{ $plan->plan_name }}</td>
                     <td class="text-center">{{ $plan->description }}</td>
-                    <td class="text-center">{{ $plan->formatted_price }}</td>
+                    <td class="text-center">Rp{{ $plan->formatted_price }}</td>
                     <td class="text-center">{{ $plan->user_qty }}</td>
+                    <td>
+                        {{ $plan->plan_features->map(function ($feature) {
+                                return $feature->feature->feature_name;
+                            })->implode(', ') }}
+                    </td>
                     <td class="text-center">
                         <span class="badge bg-{{ $plan->status_badge }}">
                             {{ $plan->status_label }}
