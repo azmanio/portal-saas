@@ -21,7 +21,7 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition() : array
     {
         return [
             'name' => fake()->name(),
@@ -29,15 +29,22 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'phone' => fake()->randomNumber(),
+            'role' => 'user',
+            'institution_name' => fake()->name(),
+            'legality_no' => fake()->randomNumber(),
+            'institution_type' => fake()->randomElement(['laz', 'ngo']),
+            'core_program' => fake()->sentence(),
+            'employee_qty' => fake()->randomDigitNotZero()
         ];
     }
 
     /**
      * Indicate that the model's email address should be unverified.
      */
-    public function unverified(): static
+    public function unverified() : static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

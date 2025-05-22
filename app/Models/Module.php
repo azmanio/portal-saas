@@ -4,11 +4,12 @@ namespace App\Models;
 
 use App\Traits\HasFormattedAttributes;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Module extends Model
 {
-    use HasUuids, HasFormattedAttributes;
+    use HasFactory, HasUuids, HasFormattedAttributes;
 
     protected $guarded = [];
 
