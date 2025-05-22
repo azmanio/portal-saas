@@ -17,7 +17,7 @@ return new class extends Migration {
                 ->on('users')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->uuid('invoice_no')->unique();
+            $table->string('invoice_no')->unique();
             $table->timestamp('invoice_date');
             $table->timestamp('due_date');
             $table->string('currency_code')->default('IDR');
@@ -26,9 +26,9 @@ return new class extends Migration {
             $table->double('amount_eqv');
             $table->text('note')->nullable();
             $table->enum('status', ['paid', 'unpaid'])->comment('status invoice');
-            $table->string('payment_method');
+            $table->string('payment_method')->nullable();
             $table->enum('payment_status', ['pending', 'success', 'failed']);
-            $table->timestamp('payment_date');
+            $table->timestamp('payment_date')->nullable();
             $table->timestamps();
         });
     }
