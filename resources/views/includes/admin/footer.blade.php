@@ -17,7 +17,7 @@
         </nav>
         <div class="copyright">
             {{ date('Y') }} &copy; made with <i class="fa fa-heart heart text-danger"></i> by
-            <a href="#">HII</a>
+            <a href="#">HI Institute</a>
         </div>
     </div>
 </footer>

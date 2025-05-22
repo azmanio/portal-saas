@@ -14,7 +14,7 @@
                 <i class="icon-arrow-right"></i>
             </li>
             <li class="nav-item">
-                <a href="{{ route('plan.index') }}">Plan</a>
+                <a href="{{ route('plans.index') }}">Plan</a>
             </li>
             <li class="separator">
                 <i class="icon-arrow-right"></i>
@@ -28,7 +28,7 @@
 
 @section('content')
     @php
-        $formAction = isset($plan) ? route('plan.update', $plan) : route('plan.store');
+        $formAction = isset($plan) ? route('plans.update', $plan) : route('plan.store');
         $selectedFeatures = old('feature', isset($plan) ? $plan->plan_features->pluck('feature_id')->toArray() : []);
     @endphp
     <x-admin.form :action="$formAction">
@@ -55,7 +55,7 @@
 
         <div class="mb-3">
             <label class="form-label">Harga</label>
-            <input name="price" class="form-control  @error('price') is-invalid @enderror"
+            <input type="number" name="price" class="form-control  @error('price') is-invalid @enderror"
                 value="{{ old('price', $plan->price ?? '') }}" required>
         </div>
 

@@ -23,7 +23,7 @@
         <x-slot:cardTitle>
             <div class="d-flex justify-content-between align-items-center">
                 <h4>List User</h4>
-                <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">
                     <i class="fa fa-user-plus"></i>
                     Add User
                 </a>
@@ -64,10 +64,10 @@
                         <a href="#">
                             <i class="fa fa-eye"></i>
                         </a>
-                        <a href="{{ route('user.edit', $user) }}">
+                        <a href="{{ route('users.edit', $user) }}">
                             <i class="fa fa-edit text-warning"></i>
                         </a>
-                        <a href="{{ route('user.destroy', $user) }}" data-confirm-delete="true">
+                        <a href="{{ route('users.destroy', $user) }}" data-confirm-delete="true">
                             <i class="fa fa-times text-danger"></i>
                         </a>
                     </td>

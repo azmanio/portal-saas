@@ -17,7 +17,7 @@ class ModuleController extends Controller
         $title = 'Apa kamu yakin?';
         $text = "Data yang dihapus tidak dapat dikembalikan lagi";
         confirmDelete($title, $text);
-        return view('admin.module.index', compact('modules'));
+        return view('admin.modules.index', compact('modules'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('admin.module.form');
+        return view('admin.modules.form');
     }
 
     /**
@@ -40,7 +40,7 @@ class ModuleController extends Controller
         Module::create($validated);
 
         Alert::success('Success', 'Module created successfully!');
-        return redirect()->route('module.index');
+        return redirect()->route('modules.index');
     }
 
     /**
@@ -56,7 +56,7 @@ class ModuleController extends Controller
      */
     public function edit(Module $module)
     {
-        return view('admin.module.form', compact('module'));
+        return view('admin.modules.form', compact('module'));
     }
 
     /**
@@ -72,7 +72,7 @@ class ModuleController extends Controller
         $module->update($data);
 
         Alert::success('Success', 'Module updated successfully!');
-        return redirect()->route('module.index');
+        return redirect()->route('modules.index');
     }
 
     /**
@@ -82,7 +82,7 @@ class ModuleController extends Controller
     {
         $module->delete();
         Alert::success('Deleted', 'Module deleted successfully!');
-        return redirect()->route('module.index');
+        return redirect()->route('modules.index');
     }
 
     public function togglestatus(Module $module)

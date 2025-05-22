@@ -54,10 +54,10 @@
                         <a href="#">
                             <i class="fa fa-eye"></i>
                         </a>
-                        <a href="{{ route('module.edit', $module) }}">
+                        <a href="{{ route('modules.edit', $module) }}">
                             <i class="fa fa-edit text-warning"></i>
                         </a>
-                        <a href="{{ route('module.destroy', $module) }}" data-confirm-delete="true">
+                        <a href="{{ route('modules.destroy', $module) }}" data-confirm-delete="true">
                             <i class="fa fa-times text-danger"></i>
                         </a>
                     </td>

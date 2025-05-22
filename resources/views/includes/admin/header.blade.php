@@ -1,10 +1,11 @@
 <div class="main-header">
     <div class="main-header-logo">
         <!-- Logo Header -->
-        <div class="logo-header" data-background-color="dark">
-            <a href="index.html" class="logo">
-                <img src="{{ asset('assets/admin/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand"
-                    height="20" />
+        <div class="logo-header">
+            <a href="{{ route('dashboard') }}" class="logo">
+                {{-- <img src="{{ asset('assets/admin/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand"
+                    height="20" /> --}}
+                <h1>S a a S</h1>
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -250,12 +251,12 @@
                     <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                         aria-expanded="false">
                         <div class="avatar-sm">
-                            <img src="assets/admin/img/profile.jpg" alt="..."
+                            <img src="{{ asset('assets/admin/img/profile.jpg') }}" alt="..."
                                 class="avatar-img rounded-circle" />
                         </div>
                         <span class="profile-username">
                             <span class="op-7">Hi,</span>
-                            <span class="fw-bold">Hizrian</span>
+                            <span class="fw-bold">{{ Auth::user()->name }}</span>
                         </span>
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -263,12 +264,12 @@
                             <li>
                                 <div class="user-box">
                                     <div class="avatar-lg">
-                                        <img src="assets/admin/img/profile.jpg" alt="image profile"
+                                        <img src="{{ asset('assets/admin/img/profile.jpg') }}" alt="image profile"
                                             class="avatar-img rounded" />
                                     </div>
                                     <div class="u-text">
-                                        <h4>Hizrian</h4>
-                                        <p class="text-muted">hello@example.com</p>
+                                        <h4>{{ Auth::user()->name }}</h4>
+                                        <p class="text-muted">{{ Auth::user()->email }}</p>
                                         <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View
                                             Profile</a>
                                     </div>

@@ -14,7 +14,7 @@
                 <i class="icon-arrow-right"></i>
             </li>
             <li class="nav-item">
-                <a href="{{ route('feature.index') }}">Feature</a>
+                <a href="{{ route('features.index') }}">Feature</a>
             </li>
             <li class="separator">
                 <i class="icon-arrow-right"></i>
@@ -28,7 +28,7 @@
 
 @section('content')
     @php
-        $formAction = isset($feature) ? route('feature.update', $feature) : route('feature.store');
+        $formAction = isset($feature) ? route('features.update', $feature) : route('feature.store');
     @endphp
     <x-admin.form :action="$formAction">
         @isset($feature)

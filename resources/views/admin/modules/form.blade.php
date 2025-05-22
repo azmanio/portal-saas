@@ -14,7 +14,7 @@
                 <i class="icon-arrow-right"></i>
             </li>
             <li class="nav-item">
-                <a href="{{ route('module.index') }}">Module</a>
+                <a href="{{ route('modules.index') }}">Module</a>
             </li>
             <li class="separator">
                 <i class="icon-arrow-right"></i>

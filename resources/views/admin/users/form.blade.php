@@ -14,7 +14,7 @@
                 <i class="icon-arrow-right"></i>
             </li>
             <li class="nav-item">
-                <a href="{{ route('user.index') }}">User</a>
+                <a href="{{ route('users.index') }}">User</a>
             </li>
             <li class="separator">
                 <i class="icon-arrow-right"></i>
@@ -28,7 +28,7 @@
 
 @section('content')
     @php
-        $formAction = isset($user) ? route('user.update', $user) : route('user.store');
+        $formAction = isset($user) ? route('users.update', $user) : route('users.store');
     @endphp
     <x-admin.form :action="$formAction">
         @isset($user)
@@ -83,12 +83,12 @@
                     <div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="role" id="roleUser" value="user"
-                                {{ old('role', $user->role ?? '') === 'user' ? 'checked' : '' }}>
+                                {{ old('role', $user->role ?? '') === 'User' ? 'checked' : '' }}>
                             <label class="form-check-label" for="roleUser">User</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="role" id="roleAdmin" value="admin"
-                                {{ old('role', $user->role ?? '') === 'admin' ? 'checked' : '' }}>
+                                {{ old('role', $user->role ?? '') === 'Admin' ? 'checked' : '' }}>
                             <label class="form-check-label" for="roleAdmin">Admin</label>
                         </div>
                     </div>

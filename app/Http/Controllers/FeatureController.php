@@ -18,7 +18,7 @@ class FeatureController extends Controller
         $title = 'Apa kamu yakin?';
         $text = "Data yang dihapus tidak dapat dikembalikan lagi";
         confirmDelete($title, $text);
-        return view('admin.feature.index', compact('features'));
+        return view('admin.features.index', compact('features'));
     }
 
     /**
@@ -27,7 +27,7 @@ class FeatureController extends Controller
     public function create()
     {
         $modules = Module::all();
-        return view('admin.feature.form', compact('modules'));
+        return view('admin.features.form', compact('modules'));
     }
 
     /**
@@ -44,7 +44,7 @@ class FeatureController extends Controller
         Feature::create($validated);
 
         Alert::success('Success', 'Feature created successfully');
-        return redirect()->route('feature.index');
+        return redirect()->route('features.index');
     }
 
     /**
@@ -61,7 +61,7 @@ class FeatureController extends Controller
     public function edit(Feature $feature)
     {
         $modules = Module::all();
-        return view('admin.feature.form', compact('feature', 'modules'));
+        return view('admin.features.form', compact('feature', 'modules'));
     }
 
     /**
@@ -78,7 +78,7 @@ class FeatureController extends Controller
         $feature->update($data);
 
         Alert::success('Success', 'Feature updated successfully!');
-        return redirect()->route('feature.index');
+        return redirect()->route('features.index');
     }
 
     /**
@@ -88,7 +88,7 @@ class FeatureController extends Controller
     {
         $feature->delete();
         Alert::success('Deleted', 'Feature deleted successfully!');
-        return redirect()->route('feature.index');
+        return redirect()->route('features.index');
     }
 
     public function togglestatus(Feature $feature)

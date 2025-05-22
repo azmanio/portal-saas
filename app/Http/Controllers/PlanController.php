@@ -20,7 +20,7 @@ class PlanController extends Controller
         $title = 'Apa kamu yakin?';
         $text = "Data yang dihapus tidak dapat dikembalikan lagi";
         confirmDelete($title, $text);
-        return view('admin.plan.index', compact('plans'));
+        return view('admin.plans.index', compact('plans'));
     }
 
     /**
@@ -30,7 +30,7 @@ class PlanController extends Controller
     {
         $statusOptions = Plan::getStatusOptions();
         $features = Feature::where('status', 1)->get();
-        return view('admin.plan.form', compact('statusOptions', 'features'));
+        return view('admin.plans.form', compact('statusOptions', 'features'));
     }
 
     /**
@@ -58,7 +58,7 @@ class PlanController extends Controller
         }
 
         Alert::success('Success', 'Plan created successfully!');
-        return redirect()->route('plan.index');
+        return redirect()->route('plans.index');
     }
 
     /**
@@ -77,7 +77,7 @@ class PlanController extends Controller
         $plan->load('plan_features');
         $features = Feature::where('status', 1)->get();
         $statusOptions = Plan::getStatusOptions();
-        return view('admin.plan.form', compact('plan', 'statusOptions', 'features'));
+        return view('admin.plans.form', compact('plan', 'statusOptions', 'features'));
     }
 
     /**
@@ -109,7 +109,7 @@ class PlanController extends Controller
         }
 
         Alert::success('Success', 'Plan updated successfully!');
-        return redirect()->route('plan.index');
+        return redirect()->route('plans.index');
     }
 
     /**
@@ -119,6 +119,6 @@ class PlanController extends Controller
     {
         $plan->delete();
         Alert::success('Deleted', 'Plan deleted successfully!');
-        return redirect()->route('plan.index');
+        return redirect()->route('plans.index');
     }
 }

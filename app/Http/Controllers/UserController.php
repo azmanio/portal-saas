@@ -14,11 +14,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(10);
+        $users = User::all();
         $title = 'Apa kamu yakin?';
         $text = "Data yang dihapus tidak dapat dikembalikan lagi";
         confirmDelete($title, $text);
-        return view('admin.user.index', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.form');
+        return view('admin.users.form');
     }
 
     /**
@@ -50,7 +50,7 @@ class UserController extends Controller
         User::create($validated);
 
         Alert::success('Success', 'User created successfully!');
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -66,7 +66,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.user.form', compact('user'));
+        return view('admin.users.form', compact('user'));
     }
 
     /**
@@ -94,7 +94,7 @@ class UserController extends Controller
         $user->update($data);
 
         Alert::success('Success', 'User updated successfully!');
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -104,13 +104,13 @@ class UserController extends Controller
     {
         $user->delete();
         Alert::success('Deleted', 'User deleted successfully!');
-        return redirect()->route('user.index');
+        return redirect()->route('users.index');
     }
 
     public function togglestatus(User $user)
     {
         if ($user->email == 'admin@saas.com') {
-            return redirect()->route('user.index')->withErrors([
+            return redirect()->route('users.index')->withErrors([
                 'status' => 'Tidak dapat mengubah status Super Admin!',
             ]);
         }
